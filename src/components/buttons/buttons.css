@@ -1,0 +1,35 @@
+.primary-btn a {
+  font-size: 14px;
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 12px 30px;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+a {
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+.primary-btn a:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+/* they may change place a tag */
