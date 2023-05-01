@@ -2,7 +2,9 @@
 
 :root {
   --background-color: #1f2029;
-  --primary-color: #e75e8d;
+  /* --primary-color: #e75e8d; */
+  --primary-color: #214aeb;
+
   --secondary-color: #fff;
   --font-family: "Poppins", sans-serif;
 }

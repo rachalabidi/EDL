@@ -1,4 +1,4 @@
-.log-in-form {
+.cr-form {
   /* background-color: white; */
   background-image: url("https://www.univ-constantine2.dz/facntic/wp-content/uploads/2022/01/Logo-NTIC-zizette-boufaida-1.png");
   background-position: top center;
@@ -6,23 +6,24 @@
   background-repeat: no-repeat;
   background-size: 5%;
 }
-.log-in-form {
+
+.cr-form {
   padding: 20vh 0;
   min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.log-in-form h1 {
-  padding: 0 80px;
+h1 {
+  padding: 0 20px;
   text-transform: uppercase;
   font-weight: 700;
   color: var(--secondary-color);
   margin-left: 25%;
-  margin-right: 25%;
+  margin-right: 15%;
 }
 .form-container {
-  min-width: 420px;
+  min-width: 820px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -48,11 +49,16 @@
 }
 
 .btn {
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 40%;
+  /* margin-right: 40%; */
 }
 
 /* MAKING THE SHIT RESPONSIVE  */
+@media screen and (max-width: 720px) {
+  .form-container {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 570px) {
   .form-container {
     width: 70%;
@@ -75,5 +81,8 @@
   .form-body form-input input,
   .form-body form-input input::placeholder {
     font-size: 1rem;
+  }
+  .btn {
+    margin-left: 22%;
   }
 }

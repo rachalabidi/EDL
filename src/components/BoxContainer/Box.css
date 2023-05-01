@@ -1,0 +1,15 @@
+.box-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-gap: 70px;
+  margin-top: 36px;
+  padding: 40px;
+}
+
+@media screen and (max-width: 576px) {
+  .box-info {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(240px, 1fr));
+  }
+}
+

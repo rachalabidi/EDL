@@ -1,0 +1,131 @@
+#content nav {
+  height: 100px;
+  background: var(--background-color);
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.logo {
+  width: 100px;
+}
+.logo img {
+  width: 80px;
+}
+.b {
+  font-size: 8px;
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 9px 7px;
+  display: inline-block;
+  border-radius: 40px;
+  font-weight: 400;
+}
+.b:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+#content nav::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 var(--background-color);
+}
+
+#content nav a {
+  color: white;
+}
+
+#content nav .nav-link {
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+#content nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+#content nav form {
+  max-width: 400px;
+  width: 100%;
+  margin-right: auto;
+}
+
+#content nav form .form-input {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+#content nav form .form-input input {
+  flex-grow: 1;
+  padding: 0 26px;
+  height: 100%;
+  border: none;
+  background: rgb(61, 61, 61);
+  border-radius: 36px 0 0 36px;
+  outline: none;
+  width: 100%;
+  color: white;
+}
+
+#content nav form .form-input button {
+  width: 46px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-color);
+  color: white;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 0 36px 36px 0;
+  cursor: pointer;
+}
+.input-icon {
+  color: white;
+  padding: 10px;
+  width: 20px;
+}
+
+#content nav .notification {
+  font-size: 20px;
+  position: relative;
+  color: white;
+}
+
+#content nav .profile img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 576px) {
+  #content nav {
+    height: 500px;
+    background: var(--background-color);
+    padding: 50 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    grid-gap: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
+}

@@ -1,0 +1,26 @@
+li {
+  padding: 24px;
+  background: rgba(194, 200, 246, 0.625);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+}
+li .bx {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+li .text h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+li .text p {
+  color: white;
+}
