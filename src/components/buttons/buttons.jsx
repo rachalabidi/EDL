@@ -3,7 +3,7 @@ import "./buttons.css";
 const PrimaryButton = (props) => {
   return (
     <div className="btn primary-btn">
-      <a href="/#">{props.children}</a>
+      <button >{props.children}</button>
     </div>
   );
 };

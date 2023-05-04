@@ -1,4 +1,4 @@
-.primary-btn a {
+.primary-btn button {
   font-size: 14px;
   color: #fff;
   background-color: var(--primary-color);
@@ -12,24 +12,24 @@
   overflow: hidden;
   text-transform: uppercase;
 }
-a:link {
+button:link {
   text-decoration: none;
 }
 
-a:visited {
+button:visited {
   text-decoration: none;
 }
 
-a:active {
+button:active {
   text-decoration: none;
 }
-a {
+button {
   cursor: pointer;
   transition: all 200ms linear;
 }
-.primary-btn a:hover {
+.primary-btn button:hover {
   background-color: #fff;
   color: var(--primary-color);
   text-decoration: none;
 }
-/* they may change place a tag */
+/* they may change place button tag */

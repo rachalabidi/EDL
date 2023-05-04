@@ -15,17 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const navigateTo = useNavigate();
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [birthday, setBirthday] = useState("");
-  // const [placeOfBirth, setPlaceOfBirth] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [speciality, setSpeciality] = useState("");
-  // const [wilayaOfBirth, setWilayaOfBirth] = useState("");
-  // const [matricule, setMatricule] = useState("");
-  // const [role, setRole] = useState("");
 
   const [registerInput, setRegister] = useState({
     email: "",
@@ -41,56 +30,12 @@ const RegistrationForm = () => {
     role: "",
     error_list: [],
   });
-  // const handleInput = (event) => {
-  //   event.persist();
-  //   event.preventDefault();
-  //   const { name, value } = event.target;
 
-  //   if (name === "speciality") {
-  //     setRegisterInput({
-  //       ...registerInput,
-  //       [name]: value,
-  //     });
-  //   }
-  //   if (name === "wilayaOfBirth") {
-  //     setRegisterInput({
-  //       ...registerInput,
-  //       [name]: value,
-  //     });
-  //   }
-  //   if (name === "role") {
-  //     setRegisterInput({
-  //       ...registerInput,
-  //       [name]: value,
-  //     });
-  //   } else {
-  //     setRegister({
-  //       ...registerInput,
-  //       [event.target.name]: event.target.value,
-  //     });
-  //   }
-  // };
   const handleInput = (event) => {
     event.persist();
     event.preventDefault();
     const { name, value } = event.target;
 
-    // if (name === "speciality") {
-    //   setRegister({
-    //     ...registerInput,
-    //     speciality: Speciality.value,
-    //   });} else
-    // if (name === "wilayaOfBirth") {
-    //   setRegister({
-    //     ...registerInput,
-    //     wilayaOfBirth: wilayaOptions.value,
-    //   });
-    // } else if (name === "role") {
-    //   setRegister({
-    //     ...registerInput,
-    //     role: Role.value,
-    //   });
-    // } else {
     setRegister({
       ...registerInput,
       [name]: value,
@@ -407,12 +352,9 @@ const RegistrationForm = () => {
             <span>{registerInput.error_list.role}</span>
           </div>
           <br />
-          {/* <PrimaryButton className="btn" type="submit">
+          <PrimaryButton className="btn" type="submit">
             ADD
-          </PrimaryButton> */}
-          <button className="btn" type="submit">
-            ADD
-          </button>
+          </PrimaryButton>
         </form>
       </div>
     </div>
