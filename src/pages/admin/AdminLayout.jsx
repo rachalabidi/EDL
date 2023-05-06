@@ -16,7 +16,7 @@ const AdminLayout = () => {
       <h1>Admin Dashboard</h1>
 
       <Outlet />
-      {/* <Navigate to="/admin/Dashboard" /> */}
+      {/* <Navigate replace to="/admin/dashboard" /> */}
     </div>
   );
 };

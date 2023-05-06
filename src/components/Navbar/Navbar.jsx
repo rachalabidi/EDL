@@ -3,8 +3,31 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { BsSearch, BsFillMenuAppFill } from "react-icons/bs";
 import { MdOutlineNotificationsNone } from "react-icons/md";
+import { PrimaryButton } from "../index";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const Navbar = (props) => {
+  const navigateTo = useNavigate();
+  const logoutSubmit = (e) => {
+    e.preventDefault();
+    console.log("working");
+    try {
+      axios.post(`/api/logout`).then((res) => {
+        if (res.data.status === 200) {
+          localStorage.removeItem("auth_token");
+          localStorage.removeItem("auth_name");
+          swal("success", "log out  ", "success");
+          navigateTo("/");
+        }
+      });
+    } catch (error) {
+      console.error(error.res.data);
+      swal("Error", "Something went wrong. Please try again later.", "error");
+    }
+  };
+
   return (
     <div id="content">
       <nav>
@@ -32,9 +55,9 @@ const Navbar = (props) => {
         <Link to={props.pathTwo} className="nav-Link">
           {props.itemTwo}
         </Link>
-        <Link to="/" className="nav-Link b">
+        <button type="button" onClick={logoutSubmit} className="nav-Link b">
           Log out
-        </Link>
+        </button>
 
         <a to="#" className="notification" />
 

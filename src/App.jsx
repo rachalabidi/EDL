@@ -2,7 +2,7 @@ import { LoginForm } from "./layouts/index";
 import { RegistrationForm } from "./layouts/index";
 import { Crud } from "./layouts/index";
 import Dashboard from "./pages/admin/Dashboard";
-
+import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
 import {
   AdminLayout,
   TeacherLayout,
@@ -10,7 +10,12 @@ import {
   StudentLayout,
 } from "./pages/index";
 import "./assets/style/app.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import axios from "axios";
 
@@ -20,18 +25,26 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.withCredentials = true;
 
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem("auth_token");
+  config.headers.Authorization = token ? `Bearer ${token}` : " ";
+  return config;
+});
+
 function App() {
   return (
     <div>
       <Routes>
         <Route exact path="/" Component={LoginForm} />
         <Route exact path="/REGISTER" Component={RegistrationForm} />
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route
-            path="/admin/RegistrationForm"
-            element={<RegistrationForm />}
-          />
+        <Route path="/admin" element={<AdminPrivateRoute />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route
+              path="/admin/RegistrationForm"
+              element={<RegistrationForm />}
+            />
+          </Route>
         </Route>
 
         {/* <Route exact path="/admin" Component={AdminLayout} /> */}
