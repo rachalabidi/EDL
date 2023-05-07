@@ -24,7 +24,14 @@
   overflow: hidden;
   text-transform: uppercase;
 }
-
+h3 {
+  color: #fff;
+  text-align: center;
+}
+.upload {
+  color: rgba(255, 255, 255, 0);
+ 
+}
 .table-wrapper {
   width: 1000px;
   border-radius: 10px;

@@ -7,6 +7,7 @@ import { FiEdit } from "react-icons/fi";
 import "./list.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { RegistrationForm } from "../../layouts";
+import CsvRegister from "../../layouts/creationAcc/CsvRegister";
 
 const List = () => {
   //   const [data, setData] = useState([]);
@@ -35,10 +36,13 @@ const List = () => {
           Add Account
         </PrimaryButton> */}
         <button onClick={navigateAdd} className="add">
-          {" "}
           Add Account
         </button>
       </div>
+      <h3>or</h3>
+
+           <CsvRegister className="upload" />
+
       <Routes>
         <Route path="/admin/REGISTER" element={<RegistrationForm />} />
       </Routes>

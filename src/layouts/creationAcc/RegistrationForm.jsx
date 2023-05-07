@@ -12,6 +12,7 @@ import { Speciality } from "../../data/speciality";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import csvRegister from "./CsvRegister";
 
 const RegistrationForm = () => {
   const navigateTo = useNavigate();
@@ -71,7 +72,7 @@ const RegistrationForm = () => {
             console.log("here it works 3");
             swal("success", "well added", "success");
 
-            navigateTo("/admin/dashboard");
+            navigateTo("/admin/List");
           } else {
             setRegister({
               ...registerInput,
@@ -87,75 +88,76 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="cr-form">
-      <div className="form-container">
-        <form onSubmit={registerSubmit} className="form-body">
-          <h1>Create Account</h1>
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type=""
-              name="email"
-              onChange={handleInput}
-              value={registerInput.email}
-              placeholder="Email"
-            />
-            <span>{registerInput.error_list.email}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="text"
-              name="firstName"
-              onChange={handleInput}
-              value={registerInput.firstName}
-              placeholder="First Name"
-            />
-            <span>{registerInput.error_list.firstName}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="TEXT"
-              name="lastName"
-              onChange={handleInput}
-              value={registerInput.lastName}
-              placeholder="Last Name"
-            />
-            <span>{registerInput.error_list.lastName}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="password"
-              name="password"
-              onChange={handleInput}
-              value={registerInput.password}
-              placeholder="Password"
-            />
-            <span>{registerInput.error_list.password}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="date"
-              name="birthday"
-              onChange={handleInput}
-              value={registerInput.birthday}
-            />
-            <span>{registerInput.error_list.birthday}</span>
-          </div>
-          <br />
-          {/* <div className="form-group">
+    <>
+      <div className="cr-form">
+        <div className="form-container">
+          <form onSubmit={registerSubmit} className="form-body">
+            <h1>Create Account</h1>
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type=""
+                name="email"
+                onChange={handleInput}
+                value={registerInput.email}
+                placeholder="Email"
+              />
+              <span>{registerInput.error_list.email}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="text"
+                name="firstName"
+                onChange={handleInput}
+                value={registerInput.firstName}
+                placeholder="First Name"
+              />
+              <span>{registerInput.error_list.firstName}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="TEXT"
+                name="lastName"
+                onChange={handleInput}
+                value={registerInput.lastName}
+                placeholder="Last Name"
+              />
+              <span>{registerInput.error_list.lastName}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="password"
+                name="password"
+                onChange={handleInput}
+                value={registerInput.password}
+                placeholder="Password"
+              />
+              <span>{registerInput.error_list.password}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="date"
+                name="birthday"
+                onChange={handleInput}
+                value={registerInput.birthday}
+              />
+              <span>{registerInput.error_list.birthday}</span>
+            </div>
+            <br />
+            {/* <div className="form-group">
             <Select
               styles={{
                 color: "#FFF",
@@ -195,70 +197,70 @@ const RegistrationForm = () => {
             />
             <span>{registerInput.error_list.wilayaOfBirth}</span>
           </div> */}
-          <div className="form-group">
-            <input
-              className="form-style"
-              type="text"
-              name="wilayaOfBirth"
-              onChange={handleInput}
-              value={registerInput.wilayaOfBirth}
-              placeholder="wilayaOfBirth"
-            />
-            <span>{registerInput.error_list.wilayaOfBirth}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            <input
-              className="form-style"
-              type="text"
-              name="placeOfBirth"
-              onChange={handleInput}
-              value={registerInput.placeOfBirth}
-              placeholder="Place Of Birth"
-            />
-            <span>{registerInput.error_list.placeOfBirth}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="text"
-              name="matricule"
-              onChange={handleInput}
-              value={registerInput.matricule}
-              placeholder="ID"
-            />
-            <span>{registerInput.error_list.matricule}</span>
-          </div>
-          <br />
+            <div className="form-group">
+              <input
+                className="form-style"
+                type="text"
+                name="wilayaOfBirth"
+                onChange={handleInput}
+                value={registerInput.wilayaOfBirth}
+                placeholder="wilayaOfBirth"
+              />
+              <span>{registerInput.error_list.wilayaOfBirth}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              <input
+                className="form-style"
+                type="text"
+                name="placeOfBirth"
+                onChange={handleInput}
+                value={registerInput.placeOfBirth}
+                placeholder="Place Of Birth"
+              />
+              <span>{registerInput.error_list.placeOfBirth}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="text"
+                name="matricule"
+                onChange={handleInput}
+                value={registerInput.matricule}
+                placeholder="ID"
+              />
+              <span>{registerInput.error_list.matricule}</span>
+            </div>
+            <br />
 
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="text"
-              name="address"
-              onChange={handleInput}
-              value={registerInput.address}
-              placeholder="Address"
-            />
-            <span>{registerInput.error_list.address}</span>
-          </div>
-          <br />
-          <div className="form-group">
-            {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
-            <input
-              className="form-style"
-              type="text"
-              name="speciality"
-              onChange={handleInput}
-              value={registerInput.speciality}
-              placeholder="speciality"
-            />
-            <span>{registerInput.error_list.matricule}</span>
-          </div>
-          {/* <div className="form-group">
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="text"
+                name="address"
+                onChange={handleInput}
+                value={registerInput.address}
+                placeholder="Address"
+              />
+              <span>{registerInput.error_list.address}</span>
+            </div>
+            <br />
+            <div className="form-group">
+              {/* <BsFillPersonFill className="input-icon uil uil-at" /> */}
+              <input
+                className="form-style"
+                type="text"
+                name="speciality"
+                onChange={handleInput}
+                value={registerInput.speciality}
+                placeholder="speciality"
+              />
+              <span>{registerInput.error_list.matricule}</span>
+            </div>
+            {/* <div className="form-group">
             <Select
               styles={{
                 color: "#FFF",
@@ -298,9 +300,9 @@ const RegistrationForm = () => {
             />
             <span>{registerInput.error_list.speciality}</span>
           </div> */}
-          <br />
-          <br />
-          {/* <div className="form-group">
+            <br />
+            <br />
+            {/* <div className="form-group">
             <Select
               styles={{
                 color: "#FFF",
@@ -340,24 +342,25 @@ const RegistrationForm = () => {
             />
             <span>{registerInput.error_list.role}</span>
           </div> */}
-          <div className="form-group">
-            <input
-              className="form-style"
-              type="text"
-              name="role"
-              onChange={handleInput}
-              value={registerInput.role}
-              placeholder="role"
-            />
-            <span>{registerInput.error_list.role}</span>
-          </div>
-          <br />
-          <PrimaryButton className="btn" type="submit">
-            ADD
-          </PrimaryButton>
-        </form>
+            <div className="form-group">
+              <input
+                className="form-style"
+                type="text"
+                name="role"
+                onChange={handleInput}
+                value={registerInput.role}
+                placeholder="role"
+              />
+              <span>{registerInput.error_list.role}</span>
+            </div>
+            <br />
+            <PrimaryButton className="btn" type="submit">
+              ADD
+            </PrimaryButton>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
