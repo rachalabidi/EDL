@@ -9,11 +9,10 @@ const AdminLayout = () => {
         role="Admin Space "
         pic="https://www.shutterstock.com/image-vector/user-icon-vector-260nw-393536320.jpg"
         itemOne="Dashboard"
-        itemTwo="Add Accounts "
+        itemTwo="List of Users  "
         pathOne="/admin/Dashboard"
-        pathTwo="/admin/RegistrationForm"
+        pathTwo="/admin/List"
       />
-      <h1>Admin Dashboard</h1>
 
       <Outlet />
       {/* <Navigate replace to="/admin/dashboard" /> */}

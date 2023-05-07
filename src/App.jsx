@@ -3,6 +3,7 @@ import { RegistrationForm } from "./layouts/index";
 import { Crud } from "./layouts/index";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
+import List from "./pages/admin/List";
 import {
   AdminLayout,
   TeacherLayout,
@@ -35,15 +36,14 @@ function App() {
   return (
     <div>
       <Routes>
+        {/* <Route exact path="/" Component={List} /> */}
         <Route exact path="/" Component={LoginForm} />
         <Route exact path="/REGISTER" Component={RegistrationForm} />
         <Route path="/admin" element={<AdminPrivateRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />
-            <Route
-              path="/admin/RegistrationForm"
-              element={<RegistrationForm />}
-            />
+            <Route path="/admin/List" element={<List />} />
+            <Route  path="/admin/REGISTER" Component={RegistrationForm} />
           </Route>
         </Route>
 

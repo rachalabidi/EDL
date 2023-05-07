@@ -5,6 +5,7 @@ const Dashboard = (props) => {
   // return <>{props.children}</>;
   return (
     <>
+      <h1>Admin Dashboard</h1>
       <Box />
     </>
   );
