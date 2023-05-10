@@ -7,6 +7,7 @@ import "../../assets/style/input.css";
 import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
 import { PrimaryButton } from "../../components/index";
 import { useNavigate } from "react-router-dom";
+import "../../assets/style/sweetalert-custom.css";
 
 function LoginForm() {
   const navigateTo = useNavigate();
@@ -41,7 +42,17 @@ function LoginForm() {
             localStorage.setItem("auth_name", res.data.username);
             console.log(res.data.role);
 
-            swal("success", "loggin", "success");
+            //         swal({
+            //           title: "Success",
+            //           text: "Logging",
+            //           icon: "success",
+            //           html: `
+            //   <div style="background-color: #1f2029; color: #ffffff;">
+            //     <h2>Success</h2>
+            //     <p>Logging</p>
+            //   </div>
+            // `,
+            //         });
             switch (res.data.role) {
               case "admin":
                 navigateTo("/admin/dashboard");
@@ -59,7 +70,13 @@ function LoginForm() {
             }
           } else if (res.data.status === 401) {
             console.log("here it works 4");
-            swal("Warning", "wrong pass or email", "warning");
+
+            swal({
+              title: "Warning",
+              text: "wrong pass or email",
+              icon: "warning",
+              customClass: "my-swal",
+            });
           } else {
             setLogin({
               ...loginInput,

@@ -37,7 +37,7 @@ function App() {
   return (
     <div>
       <Routes>
-        {/* <Route exact path="/" Component={csvRegister} /> */}
+        {/* <Route exact path="/" Component={List} /> */}
         <Route exact path="/" Component={LoginForm} />
         <Route exact path="/REGISTER" Component={RegistrationForm} />
         <Route path="/admin" element={<AdminPrivateRoute />}>

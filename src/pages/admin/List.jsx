@@ -8,22 +8,85 @@ import "./list.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { RegistrationForm } from "../../layouts";
 import CsvRegister from "../../layouts/creationAcc/CsvRegister";
+import axios from "axios";
 
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
+
+import withReactContent from "sweetalert2-react-content";
+import "../../assets/style/sweetalert-custom.css";
 const List = () => {
-  //   const [data, setData] = useState([]);
+  const [dataList, setDataList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const result = await getAllData();
-  //       setData(result);
-  //     };
-  //     fetchData();
-  //   }, []);
+  const MySwal = withReactContent(Swal);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/users");
+      setDataList(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (userId) => {
+    try {
+      const result = await MySwal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+        customClass: {
+          popup: "custom-swal-popup",
+        },
+      });
+
+      if (result.isConfirmed) {
+        await axios.delete(`/api/supprimer/${userId}`);
+        fetchData(); // Refresh data after successful deletion
+
+        MySwal.fire("Deleted!", "The user has been deleted.", "success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // UPDATE operation
+  const updateItem = async (itemId, data) => {
+    try {
+      const response = await axios.put(`/api/modifier/${itemId}`, data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const navigate = useNavigate();
 
   const navigateAdd = () => {
     navigate("/admin/REGISTER", { replace: true });
   };
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredDataList = dataList.filter((data) => {
+    const fullName = `${data.firstName} ${data.lastName}`;
+    const role = data.role.toLowerCase();
+    return (
+      fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      role.includes(searchTerm.toLowerCase())
+    );
+  });
   return (
     <div>
       <div className="grid-container-element">
@@ -41,11 +104,21 @@ const List = () => {
       </div>
       <h3>or</h3>
 
-           <CsvRegister className="upload" />
+      <CsvRegister className="upload" />
 
       <Routes>
         <Route path="/admin/REGISTER" element={<RegistrationForm />} />
       </Routes>
+      {/* Add the search bar */}
+      <div className="container">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search by role..."
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
       <div className="container">
         <div className="table-wrapper">
           <table className="table table-striped table-hover">
@@ -59,16 +132,32 @@ const List = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>rasha labidi</td>
-                <td>rasha@mail.com</td>
-                <td>gl</td>
-                <td>Student</td>
-                <td>
-                  <FiEdit className="icon" />
-                  <AiOutlineDelete className="icon" />
-                </td>
-              </tr>
+              {filteredDataList.length > 0 ? (
+                filteredDataList.map((data) => (
+                  <tr key={data.id}>
+                    <td>
+                      {data.firstName} {data.lastName}
+                    </td>
+                    <td>{data.email}</td>
+                    <td>{data.speciality}</td>
+                    <td>{data.role}</td>
+                    <td>
+                      <FiEdit
+                        className="icon"
+                        onClick={() => updateItem(data.id)}
+                      />
+                      <AiOutlineDelete
+                        className="icon"
+                        onClick={() => handleDelete(data.id)}
+                      />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">No users found.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

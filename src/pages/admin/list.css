@@ -6,6 +6,22 @@
   width: 85%;
   padding-left: 70px;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+ 
+}
+
+.search-input {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+}
+
 .add {
   margin-top: 20px;
   margin-left: 150px;
@@ -30,7 +46,6 @@ h3 {
 }
 .upload {
   color: rgba(255, 255, 255, 0);
- 
 }
 .table-wrapper {
   width: 1000px;

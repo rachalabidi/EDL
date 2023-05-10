@@ -10,23 +10,26 @@
   min-width: 200px;
   font-style: italic;
 }
+.upload span {
+  color: rgb(255, 255, 255);
+}
 
 .upload {
   display: inline-block;
   padding: 10px;
+
   background: var(--primary-color);
 
   font-size: 13px;
   font-weight: bold;
-  color: white;
 }
 .upload:hover {
   background: rgb(255, 254, 254);
   color: var(--primary-color);
 }
-.upload:active {
+/* .upload:active {
   background: rgb(0, 83, 236);
-}
+} */
 .upload:invalid + span {
   color: red;
 }

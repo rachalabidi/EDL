@@ -1,0 +1,14 @@
+.custom-swal-popup {
+  background-color: var(--background-color) !important;
+  color: #fff !important;
+}
+.swal2-popup .swal2-confirm {
+  background-color: var(--primary-color) !important;
+}
+.my-swal {
+  background-color: var(--background-color) !important;
+}
+
+.my-swal .swal-button {
+  background-color: var(--primary-color) !important;
+}
