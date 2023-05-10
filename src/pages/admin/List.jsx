@@ -69,10 +69,74 @@ const List = () => {
   };
 
   // UPDATE operation
-  const updateItem = async (itemId, data) => {
+
+  const [userInput, setUserInput] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const handleModify = async (itemId) => {
     try {
-      const response = await axios.put(`/api/modifier/${itemId}`, data);
-      console.log(response.data);
+      const result = await Swal.fire({
+        title: "Modify User",
+        html:
+          '<input id="swal-input1" class="swal2-input" placeholder="First Name" value="' +
+          userInput.firstName +
+          '">' +
+          '<input id="swal-input2" class="swal2-input" placeholder="Last Name" value="' +
+          userInput.lastName +
+          '">',
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        customClass: {
+          popup: "custom-swal-popup",
+          confirmButton: "custom-swal-confirm-button",
+          cancelButton: "custom-swal-cancel-button",
+          input: "custom-swal-input",
+        },
+        preConfirm: () => {
+          const firstName = Swal.getPopup().querySelector("#swal-input1").value;
+          const lastName = Swal.getPopup().querySelector("#swal-input2").value;
+          return { firstName, lastName };
+        },
+      });
+
+      if (result.isConfirmed) {
+        const { firstName, lastName } = result.value;
+
+        const data = {
+          firstName: firstName,
+          lastName: lastName,
+        };
+
+        try {
+          const response = await axios.put(`/api/modifier/${itemId}`, data);
+          console.log(response.data);
+
+          Swal.fire({
+            title: "Success",
+            text: "User modified successfully!",
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          }).then(() => {
+            fetchData();
+          });
+        } catch (error) {
+          console.log(error);
+
+          Swal.fire({
+            title: "Error",
+            text: "Failed to modify user",
+            icon: "error",
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          }).then(() => {
+            // Perform any additional actions after the alert is closed
+          });
+        }
+      }
     } catch (error) {
       console.log(error);
     }
@@ -134,7 +198,7 @@ const List = () => {
                     <td>
                       <FiEdit
                         className="icon"
-                        onClick={() => updateItem(data.id)}
+                        onClick={() => handleModify(data.id)}
                       />
                       <AiOutlineDelete
                         className="icon"
