@@ -1,23 +1,30 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { AiOutlineDelete } from "react-icons/ai";
-import { PrimaryButton } from "../../components/index";
-
-import { FiEdit } from "react-icons/fi";
-import "./list.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { RegistrationForm } from "../../layouts";
-import CsvRegister from "../../layouts/creationAcc/CsvRegister";
-import axios from "axios";
-
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
-
 import withReactContent from "sweetalert2-react-content";
+
+// ICONS AND BUTTONS
+import { AiOutlineDelete } from "react-icons/ai";
+import { PrimaryButton } from "../../components/index";
+import { FiEdit } from "react-icons/fi";
+
+// STYLE
+import "./list.css";
 import "../../assets/style/sweetalert-custom.css";
+
+//COMPONENTS
+import { RegistrationForm } from "../../layouts";
+import CsvRegister from "../../layouts/creationAcc/CsvRegister";
+import SearchBar from "./SearchBar";
+
+import axios from "axios";
+
 const List = () => {
   const [dataList, setDataList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
+  const [filteredDataList, setFilteredDataList] = useState([]);
 
   const MySwal = withReactContent(Swal);
 
@@ -29,6 +36,7 @@ const List = () => {
     try {
       const response = await axios.get("/api/users");
       setDataList(response.data.users);
+      setFilteredDataList(response.data.users);
     } catch (error) {
       console.log(error);
     }
@@ -75,29 +83,17 @@ const List = () => {
   const navigateAdd = () => {
     navigate("/admin/REGISTER", { replace: true });
   };
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+  const handleSearch = (query) => {
+    const filteredList = dataList.filter((data) =>
+      data.role.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredDataList(filteredList);
   };
 
-  const filteredDataList = dataList.filter((data) => {
-    const fullName = `${data.firstName} ${data.lastName}`;
-    const role = data.role.toLowerCase();
-    return (
-      fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      role.includes(searchTerm.toLowerCase())
-    );
-  });
   return (
     <div>
       <div className="grid-container-element">
         <h1 className="grid-child-element">User Table</h1>
-        {/* <PrimaryButton
-          type="submit"
-          onClick={navigateAdd}
-          className="grid-child-element"
-        >
-          Add Account
-        </PrimaryButton> */}
         <button onClick={navigateAdd} className="add">
           Add Account
         </button>
@@ -111,13 +107,7 @@ const List = () => {
       </Routes>
       {/* Add the search bar */}
       <div className="container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search by role..."
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+        <SearchBar handleSearch={handleSearch} />
       </div>
       <div className="container">
         <div className="table-wrapper">
