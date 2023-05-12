@@ -4,6 +4,8 @@ import { RegistrationForm } from "./layouts/index";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
 import ViceDPrivateRoute from "./ViceDPrivateRoute";
+import StudentPrivateRoute from "./StudentPrivateRoute";
+
 import List from "./pages/admin/List";
 
 import {
@@ -53,11 +55,12 @@ function App() {
           </Route>
         </Route>
 
-        {/* <Route exact path="/admin" Component={AdminLayout} /> */}
         <Route exact path="/Cfd" Component={CfdLayout} />
-        <Route exact path="/Student" Component={StudentLayout} />
         <Route exact path="/Teacher" Component={TeacherLayout} />
-        {/* <Route exact path="/ViceD" Component={ViceD} /> */}
+        <Route path="/Student" element={<StudentPrivateRoute />}>
+          <Route path="/Student" Component={StudentLayout} />
+        </Route>
+
         <Route path="/ViceD" element={<ViceDPrivateRoute />}>
           <Route path="/ViceD" element={<ViceD />}>
             <Route path="/ViceD/SharingPost" element={<SharingPost />} />

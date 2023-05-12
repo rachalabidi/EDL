@@ -3,7 +3,7 @@ import "./post.css";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import Post from "./Post";
+import Post, { PostView } from "./Post";
 import Swal from "sweetalert2";
 
 const PostContainer = () => {

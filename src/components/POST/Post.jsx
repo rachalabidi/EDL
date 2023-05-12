@@ -19,5 +19,15 @@ const Post = (props) => {
     </div>
   );
 };
+const PostView = (props) => {
+  return (
+    <div className="post">
+      <h3 className="post-title">{props.title} </h3>
+      <p className="post-description">{props.description}</p>
+      <img src={props.photo} alt={props.photo} className="post-photo" />
+    </div>
+  );
+};
 
 export default Post;
+export { PostView };

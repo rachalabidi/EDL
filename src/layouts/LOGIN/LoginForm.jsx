@@ -40,6 +40,7 @@ function LoginForm() {
           if (res.data.status === 200) {
             localStorage.setItem("auth_token", res.data.token);
             localStorage.setItem("auth_name", res.data.username);
+            localStorage.setItem("auth_lastnama", res.data.userlastname);
             console.log(res.data.role);
 
             switch (res.data.role) {
