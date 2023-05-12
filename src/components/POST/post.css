@@ -1,0 +1,107 @@
+.post {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");
+  background-position: center;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.post-description {
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.post-photo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.post-icon:hover {
+  background-color: #e6e6e6;
+  color: var(--primary-color);
+}
+.custom-swal-popup {
+  width: 400px;
+}
+
+.custom-swal-input {
+  margin-bottom: 10px;
+}
+
+.custom-swal-file-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom-swal-file-input input[type="file"] {
+  flex-grow: 1;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  /* background-color: #f5f5f5; */
+}
+
+.custom-swal-file-input label {
+  margin-left: 10px;
+}
+
+.custom-swal-confirm-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 24px;
+}
+
+.custom-swal-cancel-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 24px;
+}
+
+.swal2-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.swal2-textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.swal2-file {
+  display: none;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-// import { useHistory } from "react-router-dom";
+
 import "./LoginForm.css";
 import "../../assets/style/input.css";
 import { BsFillPersonFill, BsLockFill } from "react-icons/bs";
@@ -42,17 +42,6 @@ function LoginForm() {
             localStorage.setItem("auth_name", res.data.username);
             console.log(res.data.role);
 
-            //         swal({
-            //           title: "Success",
-            //           text: "Logging",
-            //           icon: "success",
-            //           html: `
-            //   <div style="background-color: #1f2029; color: #ffffff;">
-            //     <h2>Success</h2>
-            //     <p>Logging</p>
-            //   </div>
-            // `,
-            //         });
             switch (res.data.role) {
               case "admin":
                 navigateTo("/admin/dashboard");
@@ -65,6 +54,9 @@ function LoginForm() {
                 break;
               case "teacher":
                 navigateTo("/Teacher");
+                break;
+              case "vice":
+                navigateTo("/ViceD/SharingPost");
                 break;
               default:
             }

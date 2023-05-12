@@ -1,17 +1,20 @@
 import { LoginForm } from "./layouts/index";
 import { RegistrationForm } from "./layouts/index";
-import { Crud } from "./layouts/index";
+
 import Dashboard from "./pages/admin/Dashboard";
 import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
+import ViceDPrivateRoute from "./ViceDPrivateRoute";
 import List from "./pages/admin/List";
-import csvRegister from "./layouts/creationAcc/CsvRegister";
+
 import {
   AdminLayout,
   TeacherLayout,
   CfdLayout,
   StudentLayout,
+  ViceD,
 } from "./pages/index";
 import "./assets/style/app.css";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +23,8 @@ import {
 } from "react-router-dom";
 
 import axios from "axios";
+import PostContainer from "./components/POST/PostContainer";
+import SharingPost from "./components/POST/SharingPost";
 
 axios.defaults.baseURL = "http://localhost:8000";
 
@@ -37,9 +42,9 @@ function App() {
   return (
     <div>
       <Routes>
-        {/* <Route exact path="/" Component={List} /> */}
+        {/* <Route exact path="/" Component={PostContainer} /> */}
         <Route exact path="/" Component={LoginForm} />
-        <Route exact path="/REGISTER" Component={RegistrationForm} />
+        {/* <Route exact path="/REGISTER" Component={RegistrationForm} /> */}
         <Route path="/admin" element={<AdminPrivateRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="/admin/dashboard" element={<Dashboard />} />
@@ -52,6 +57,14 @@ function App() {
         <Route exact path="/Cfd" Component={CfdLayout} />
         <Route exact path="/Student" Component={StudentLayout} />
         <Route exact path="/Teacher" Component={TeacherLayout} />
+        {/* <Route exact path="/ViceD" Component={ViceD} /> */}
+        <Route path="/ViceD" element={<ViceDPrivateRoute />}>
+          <Route path="/ViceD" element={<ViceD />}>
+            <Route path="/ViceD/SharingPost" element={<SharingPost />} />
+
+            <Route path="/ViceD/posts" element={<PostContainer />} />
+          </Route>
+        </Route>
       </Routes>
     </div>
   );
