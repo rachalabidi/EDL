@@ -7,7 +7,11 @@ const Post = (props) => {
     <div className="post">
       <h3 className="post-title">{props.title} </h3>
       <p className="post-description">{props.description}</p>
-      <img src={props.photo} alt={props.photo} className="post-photo" />
+      <img
+        src={`http://localhost:8000/storage/${props.photo}`}
+        alt={props.photo}
+        className="post-photo"
+      />
       <div className="post-actions">
         <button className="post-icon" onClick={props.onDelete}>
           <FaTrash />
@@ -24,7 +28,11 @@ const PostView = (props) => {
     <div className="post">
       <h3 className="post-title">{props.title} </h3>
       <p className="post-description">{props.description}</p>
-      <img src={props.photo} alt={props.photo} className="post-photo" />
+      <img
+        src={`http://localhost:8000/storage/${props.photo}`}
+        alt={props.photo}
+        className="post-photo"
+      />
     </div>
   );
 };

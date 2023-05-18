@@ -28,7 +28,7 @@ const PostContainerView = () => {
           key={post.id}
           title={post.title}
           description={post.description}
-          photo={`/storage/${post.path}`}
+          photo={post.path}
         />
       ))}
     </div>

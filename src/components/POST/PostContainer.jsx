@@ -52,7 +52,7 @@ const PostContainer = () => {
           post.description +
           "</textarea>" +
           '<div class="custom-swal-file-input">' +
-          '<input id="swal-input-photo" class="swal2-input" class="swal2-input" type="file" accept="image/*" src="' +
+          '<input id="swal-input-photo" class="swal2-input" class="swal2-input" type="file" accept="image/*" src="http://localhost:8000/storage/' +
           post.photo +
           '">' +
           "</div>",
@@ -129,7 +129,7 @@ const PostContainer = () => {
           key={post.id}
           title={post.title}
           description={post.description}
-          photo={`/storage/${post.path}`}
+          photo={post.path}
           onDelete={() => deletePost(post.id)}
           onEdit={() => handleModifyPost(post.id)}
         />
