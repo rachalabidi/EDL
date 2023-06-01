@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Papa from "papaparse";
 import axios from "axios";
 import moment from "moment";
+
 import "./csv.css";
 
 const CsvRegister = () => {
@@ -15,6 +16,7 @@ const CsvRegister = () => {
           row.birthday = moment(row.birthday, "DD/MM/YYYY ").format(
             "YYYY-MM-DD "
           );
+          row.password = "password123";
 
           console.log(row);
           console.log("it works herere");

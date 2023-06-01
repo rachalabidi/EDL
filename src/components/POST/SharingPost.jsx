@@ -3,6 +3,7 @@ import axios from "axios";
 import "./sharing.css";
 import "../../assets/style/input.css";
 import { FaUpload } from "react-icons/fa";
+import PostContainer from "./PostContainer";
 
 const SharingPost = () => {
   const [post, setPost] = useState({
@@ -51,60 +52,65 @@ const SharingPost = () => {
         description: "",
         photo: null,
       });
+      
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="share-post-container">
-      <form className="share-post-form" onSubmit={handleSubmit}>
-        <div className="form-field">
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={post.title}
-            onChange={handleInputChange}
-            className="text-input"
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="description">Post:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={post.description}
-            onChange={handleInputChange}
-            className="text-input textarea-input"
-            rows={5}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="photo">Image:</label>
-          <div className="image-input-wrapper">
-            <label htmlFor="photo" className="image-input-label">
-              <FaUpload className="upload-icon" />
-              Choose File
-            </label>
+    <div>
+      <div className="share-post-container">
+        <form className="share-post-form" onSubmit={handleSubmit}>
+          <div className="form-field">
+            <label htmlFor="title">Title:</label>
             <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              onChange={handleImageUpload}
+              type="text"
+              id="title"
+              name="title"
+              value={post.title}
+              onChange={handleInputChange}
+              className="text-input"
             />
-            {post.photo && (
-              <img
-                className="image-preview"
-                src={URL.createObjectURL(post.photo)}
-                alt="Preview"
-              />
-            )}
           </div>
-        </div>
-        <button type="submit">Share</button>
-      </form>
+          <div className="form-field">
+            <label htmlFor="description">Post:</label>
+            <textarea
+              id="description"
+              name="description"
+              value={post.description}
+              onChange={handleInputChange}
+              className="text-input textarea-input"
+              rows={5}
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="photo">Image:</label>
+            <div className="image-input-wrapper">
+              <label htmlFor="photo" className="image-input-label">
+                <FaUpload className="upload-icon" />
+                Choose File
+              </label>
+              <input
+                type="file"
+                id="photo"
+                name="photo"
+                accept="image/*"
+                onChange={handleImageUpload}
+              />
+              {post.photo && (
+                <img
+                  className="image-preview"
+                  src={URL.createObjectURL(post.photo)}
+                  alt="Preview"
+                />
+              )}
+            </div>
+          </div>
+          <button type="submit">Share</button>
+        </form>
+      </div>
+      <h1> Posts </h1>
+      <PostContainer />
     </div>
   );
 };

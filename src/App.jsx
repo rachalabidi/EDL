@@ -14,6 +14,7 @@ import {
   CfdLayout,
   StudentLayout,
   ViceD,
+  addCode,
 } from "./pages/index";
 import "./assets/style/app.css";
 
@@ -65,7 +66,7 @@ function App() {
           <Route path="/ViceD" element={<ViceD />}>
             <Route path="/ViceD/SharingPost" element={<SharingPost />} />
 
-            <Route path="/ViceD/posts" element={<PostContainer />} />
+            <Route path="/ViceD/posts" element={addCode} />
           </Route>
         </Route>
       </Routes>
