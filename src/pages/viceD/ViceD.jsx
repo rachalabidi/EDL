@@ -12,7 +12,7 @@ const ViceD = () => {
         itemOne="Share Informations "
         itemTwo=" Add anonymity code "
         pathOne="/ViceD/SharingPost"
-        pathTwo="/ViceD/posts "
+        pathTwo="/ViceD/addCode "
       />
       <Outlet />
     </div>

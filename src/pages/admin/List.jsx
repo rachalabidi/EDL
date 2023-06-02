@@ -75,7 +75,6 @@ const List = () => {
     lastName: "",
   });
   const handleModify = async (itemId) => {
-   
     try {
       const result = await Swal.fire({
         title: "Modify User",
