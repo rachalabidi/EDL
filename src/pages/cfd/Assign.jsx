@@ -5,6 +5,7 @@ const Assign = () => {
   const [teachers, setTeachers] = useState([]);
   const [selectedTeachers, setSelectedTeachers] = useState([]);
   const [selectedTeacherDetails, setSelectedTeacherDetails] = useState([]);
+  const [disableDropdowns, setDisableDropdowns] = useState(false); // New state variable
 
   useEffect(() => {
     // Fetch data from the database using Axios
@@ -34,6 +35,7 @@ const Assign = () => {
   const handleButtonClick = () => {
     insertModule();
     handleSave();
+    setDisableDropdowns(true); // Disable the dropdowns after clicking the button
   };
 
   const handleSave = () => {
@@ -154,103 +156,140 @@ const Assign = () => {
     }
   };
 
+  const buttonStyles = {
+    fontSize: "14px",
+    color: "#fff",
+    backgroundColor: "var(--primary-color)",
+    padding: "12px 30px",
+    display: "inline-block",
+    borderRadius: "4px",
+    fontWeight: 400,
+    letterSpacing: "0.5px",
+    transition: "all 0.3s",
+    position: "relative",
+    overflow: "hidden",
+    textTransform: "uppercase",
+    margin: "0 50%",
+  };
+
+  const buttonHoverStyles = {
+    backgroundColor: "#fff",
+    color: "var(--primary-color)",
+    textDecoration: "none",
+  };
+
   return (
-    <div className="container">
-      <div className="table-wrapper">
-        <table className="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Module</th>
-              <th>Teacher 1</th>
-              <th>Teacher 2</th>
-              <th>Teacher 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(5)].map((_, index) => (
-              <tr key={index}>
-                <td>{getModuleName(index)}</td>
-                <td>
-                  <select
-                    value={selectedTeachers[index]?.matricule || ""}
-                    onChange={(e) => handleTeacherChange(index, e.target.value)}
-                  >
-                    <option value="">Select Teacher</option>
-                    {filterTeachersByRow(index).map((teacher) => (
-                      <option
-                        key={teacher.teacher_id}
-                        value={teacher.matricule}
-                      >
-                        {teacher.firstName} {teacher.lastName}
-                      </option>
-                    ))}
-                  </select>
-                  {selectedTeacherDetails[index] && (
-                    <div>
-                      Selected Teacher:{" "}
-                      {`${selectedTeacherDetails[index].firstName} ${selectedTeacherDetails[index].lastName}`}
-                    </div>
-                  )}
-                </td>
-                <td>
-                  <select
-                    value={selectedTeachers[index + 5]?.matricule || ""}
-                    onChange={(e) =>
-                      handleTeacherChange(index + 5, e.target.value)
-                    }
-                  >
-                    <option value="">Select Teacher</option>
-                    {filterTeachersByRow(index).map((teacher) => (
-                      <option
-                        key={teacher.teacher_id}
-                        value={teacher.matricule}
-                      >
-                        {teacher.firstName} {teacher.lastName}
-                      </option>
-                    ))}
-                  </select>
-                  {selectedTeacherDetails[index + 5] && (
-                    <div>
-                      Selected Teacher:{" "}
-                      {`${selectedTeacherDetails[index + 5].firstName} ${
-                        selectedTeacherDetails[index + 5].lastName
-                      }`}
-                    </div>
-                  )}
-                </td>
-                <td>
-                  <select
-                    value={selectedTeachers[index + 10]?.matricule || ""}
-                    onChange={(e) =>
-                      handleTeacherChange(index + 10, e.target.value)
-                    }
-                    disabled
-                  >
-                    <option value="">Select Teacher</option>
-                    {filterTeachersByRow(index).map((teacher) => (
-                      <option
-                        key={teacher.teacher_id}
-                        value={teacher.matricule}
-                      >
-                        {teacher.firstName} {teacher.lastName}
-                      </option>
-                    ))}
-                  </select>
-                  {selectedTeacherDetails[index + 10] && (
-                    <div>
-                      Selected Teacher:{" "}
-                      {`${selectedTeacherDetails[index + 10].firstName} ${
-                        selectedTeacherDetails[index + 10].lastName
-                      }`}
-                    </div>
-                  )}
-                </td>
+    <div>
+      {" "}
+      <button
+        style={buttonStyles}
+        onMouseOver={() => (buttonStyles = buttonHoverStyles)}
+        onMouseOut={() => (buttonStyles = {})}
+        type="button"
+        onClick={handleButtonClick}
+      >
+        Save
+      </button>
+      <div className="container">
+        <div className="table-wrapper">
+          <table className="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Teacher 1</th>
+                <th>Teacher 2</th>
+                <th>Teacher 3</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {[...Array(5)].map((_, index) => (
+                <tr key={index}>
+                  <td>{getModuleName(index)}</td>
+                  <td>
+                    <select
+                      value={selectedTeachers[index]?.matricule || ""}
+                      onChange={(e) =>
+                        handleTeacherChange(index, e.target.value)
+                      }
+                      disabled={disableDropdowns} // Disable the dropdown if disableDropdowns is true
+                    >
+                      <option value="">Select Teacher</option>
+                      {filterTeachersByRow(index).map((teacher) => (
+                        <option
+                          key={teacher.teacher_id}
+                          value={teacher.matricule}
+                        >
+                          {teacher.firstName} {teacher.lastName}
+                        </option>
+                      ))}
+                    </select>
+                    {selectedTeacherDetails[index] && (
+                      <div>
+                        Selected Teacher:{" "}
+                        {`${selectedTeacherDetails[index].firstName} ${selectedTeacherDetails[index].lastName}`}
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    <select
+                      value={selectedTeachers[index + 5]?.matricule || ""}
+                      onChange={(e) =>
+                        handleTeacherChange(index + 5, e.target.value)
+                      }
+                      disabled={disableDropdowns} // Disable the dropdown if disableDropdowns is true
+                    >
+                      <option value="">Select Teacher</option>
+                      {filterTeachersByRow(index).map((teacher) => (
+                        <option
+                          key={teacher.teacher_id}
+                          value={teacher.matricule}
+                        >
+                          {teacher.firstName} {teacher.lastName}
+                        </option>
+                      ))}
+                    </select>
+                    {selectedTeacherDetails[index + 5] && (
+                      <div>
+                        Selected Teacher:{" "}
+                        {`${selectedTeacherDetails[index + 5].firstName} ${
+                          selectedTeacherDetails[index + 5].lastName
+                        }`}
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    <select
+                      value={selectedTeachers[index + 10]?.matricule || ""}
+                      onChange={(e) =>
+                        handleTeacherChange(index + 10, e.target.value)
+                      }
+                      disabled
+                    >
+                      <option value="">Select Teacher</option>
+                      {filterTeachersByRow(index).map((teacher) => (
+                        <option
+                          key={teacher.teacher_id}
+                          value={teacher.matricule}
+                        >
+                          {teacher.firstName} {teacher.lastName}
+                        </option>
+                      ))}
+                    </select>
+                    {selectedTeacherDetails[index + 10] && (
+                      <div>
+                        Selected Teacher:{" "}
+                        {`${selectedTeacherDetails[index + 10].firstName} ${
+                          selectedTeacherDetails[index + 10].lastName
+                        }`}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <button onClick={handleButtonClick}>Save</button>
     </div>
   );
 };
