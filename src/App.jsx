@@ -5,6 +5,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
 import ViceDPrivateRoute from "./ViceDPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import CfdPrivateRoute from "./CfdPrivateRoute";
 
 import List from "./pages/admin/List";
 
@@ -15,6 +16,8 @@ import {
   StudentLayout,
   ViceD,
   AddCode,
+  Assign,
+  Dashboardcfd,
 } from "./pages/index";
 import "./assets/style/app.css";
 
@@ -56,7 +59,6 @@ function App() {
           </Route>
         </Route>
 
-        <Route exact path="/Cfd" Component={CfdLayout} />
         <Route exact path="/Teacher" Component={TeacherLayout} />
         <Route path="/Student" element={<StudentPrivateRoute />}>
           <Route path="/Student" Component={StudentLayout} />
@@ -67,6 +69,14 @@ function App() {
             <Route path="/ViceD/SharingPost" element={<SharingPost />} />
 
             <Route path="/ViceD/AddCode" element={<AddCode />} />
+          </Route>
+        </Route>
+
+        <Route path="/Cfd" element={<CfdPrivateRoute />}>
+          <Route path="/Cfd" element={<CfdLayout />}>
+            <Route path="/Cfd/Dashboard" element={<Dashboardcfd />} />
+
+            <Route path="/Cfd/AssignTeachers" element={<Assign />} />
           </Route>
         </Route>
       </Routes>

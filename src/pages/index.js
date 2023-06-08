@@ -4,3 +4,5 @@ export { default as StudentLayout } from "./student/StudentLayout";
 export { default as TeacherLayout } from "./teacher/TeacherLayout";
 export { default as ViceD } from "./viceD/ViceD";
 export { default as AddCode } from "./viceD/AddCode";
+export { default as Assign } from "./cfd/Assign";
+export { default as Dashboardcfd } from "./cfd/Dashboardcfd";
