@@ -5,6 +5,8 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminPrivateRoute from "./AdminPrivateRoute.tsx";
 import ViceDPrivateRoute from "./ViceDPrivateRoute";
 import StudentPrivateRoute from "./StudentPrivateRoute";
+import TeacherPrivateRoute from "./TeacherPrivateRoute";
+
 import CfdPrivateRoute from "./CfdPrivateRoute";
 
 import List from "./pages/admin/List";
@@ -58,8 +60,10 @@ function App() {
             <Route path="/admin/REGISTER" Component={RegistrationForm} />
           </Route>
         </Route>
-
-        <Route exact path="/Teacher" Component={TeacherLayout} />
+        <Route path="/Teacher" element={<TeacherPrivateRoute />}>
+          <Route path="/Teacher" Component={TeacherLayout} />
+        </Route>
+        {/* <Route exact path="/Teacher" Component={TeacherLayout} /> */}
         <Route path="/Student" element={<StudentPrivateRoute />}>
           <Route path="/Student" Component={StudentLayout} />
         </Route>

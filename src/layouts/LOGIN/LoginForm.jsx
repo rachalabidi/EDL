@@ -41,6 +41,8 @@ function LoginForm() {
             localStorage.setItem("auth_token", res.data.token);
             localStorage.setItem("auth_name", res.data.username);
             localStorage.setItem("auth_lastnama", res.data.userlastname);
+            localStorage.setItem("matricule", res.data.matricule);
+            localStorage.setItem("speciality", res.data.speciality);
             console.log(res.data.role);
 
             switch (res.data.role) {
