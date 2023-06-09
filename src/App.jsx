@@ -10,7 +10,7 @@ import TeacherPrivateRoute from "./TeacherPrivateRoute";
 import CfdPrivateRoute from "./CfdPrivateRoute";
 
 import List from "./pages/admin/List";
-
+import TablePage from "./pages/cfd/TablePage";
 import {
   AdminLayout,
   TeacherLayout,
@@ -79,7 +79,29 @@ function App() {
         <Route path="/Cfd" element={<CfdPrivateRoute />}>
           <Route path="/Cfd" element={<CfdLayout />}>
             <Route path="/Cfd/Dashboard" element={<Dashboardcfd />} />
-
+            <Route>
+              {" "}
+              <Route
+                path="/Cfd/Dashboard/gl"
+                element={<TablePage tableName="gl" />}
+              ></Route>
+              <Route
+                path="/Cfd/Dashboard/stic"
+                element={<TablePage tableName="stic" />}
+              ></Route>
+              <Route
+                path="/Cfd/Dashboard/stiw"
+                element={<TablePage tableName="stiw" />}
+              ></Route>
+              <Route
+                path="/Cfd/Dashboard/rsd"
+                element={<TablePage tableName="rsd" />}
+              ></Route>
+              <Route
+                path="/Cfd/Dashboard/tr"
+                element={<TablePage tableName="tr" />}
+              ></Route>
+            </Route>
             <Route path="/Cfd/AssignTeachers" element={<Assign />} />
           </Route>
         </Route>
