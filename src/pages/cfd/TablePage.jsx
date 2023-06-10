@@ -3,6 +3,8 @@ import axios from "axios";
 
 const TablePage = ({ tableName }) => {
   const [tableData, setTableData] = useState([]);
+  const [teacherOptions, setTeacherOptions] = useState([]);
+  const [selectedTeacher, setSelectedTeacher] = useState("");
 
   useEffect(() => {
     // Fetch table data from the database based on the tableName
@@ -12,6 +14,18 @@ const TablePage = ({ tableName }) => {
         const data = response.data;
         console.log(data);
         setTableData(data);
+      })
+      .catch((error) => {
+        // Handle the error
+      });
+
+    // Fetch teacher options from the database
+    axios
+      .get(`/api/teachers?assigned_${tableName}=0`)
+      .then((response) => {
+        const teachers = response.data;
+        console.log(teachers);
+        setTeacherOptions(teachers);
       })
       .catch((error) => {
         // Handle the error
@@ -36,9 +50,7 @@ const TablePage = ({ tableName }) => {
       })
       .then((response) => {
         console.log(updatedTableData);
-
         console.log(response.data.message);
-
         // Handle success
       })
       .catch((error) => {
@@ -46,6 +58,28 @@ const TablePage = ({ tableName }) => {
         // Handle error
       });
   };
+
+  const handleTeacherSelect = (event) => {
+    setSelectedTeacher(event.target.value);
+  };
+
+  const handleAssignTeacher = () => {
+    // Update the selected teacher in the modules table
+    axios
+      .post(`/api/modules/update-matricule3`, {
+        tableName: tableName,
+        matricule: selectedTeacher,
+      })
+      .then((response) => {
+        console.log(response.data.message);
+        // Handle success
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        // Handle error
+      });
+  };
+
   const buttonStyles = {
     fontSize: "14px",
     color: "#fff",
@@ -59,14 +93,45 @@ const TablePage = ({ tableName }) => {
     position: "relative",
     overflow: "hidden",
     textTransform: "uppercase",
-    margin: "0 50%",
+    // margin: "0 50%",
   };
+  const filterTeachers = teacherOptions.filter(
+    (teacher) => teacher[`assigned_${tableName}`] === 0
+  );
+
   return (
     <div>
-      {" "}
-      <button style={buttonStyles} onClick={handleUpdateNoteD}>
-        Update All NoteD
-      </button>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto", // Adjusted the grid template columns
+          gap: "20px",
+          alignItems: "center",
+          width: "70%",
+          margin: "auto",
+        }}
+      >
+        <select value={selectedTeacher} onChange={handleTeacherSelect}>
+          <option value="">Select Teacher</option>
+          {filterTeachers.map((teacher) => (
+            <option key={teacher.matricule} value={teacher.matricule}>
+              {teacher.firstName} {teacher.lastName}
+            </option>
+          ))}
+        </select>
+        <button style={buttonStyles} onClick={handleAssignTeacher}>
+          Assign Teacher
+        </button>
+      </div>
+
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "20px" }}
+      >
+        <button style={buttonStyles} onClick={handleUpdateNoteD}>
+          Update All NoteD
+        </button>
+      </div>
+
       <div className="container">
         <div className="table-wrapper">
           <table className="table table-striped table-hover">
@@ -76,7 +141,7 @@ const TablePage = ({ tableName }) => {
                 <th>Note1</th>
                 <th>Note2</th>
                 <th>Note3</th>
-                <th>Difference </th>
+                <th>Difference</th>
                 <th>Note Final</th>
               </tr>
             </thead>
