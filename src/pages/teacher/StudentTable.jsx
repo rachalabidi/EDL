@@ -88,21 +88,24 @@ const StudentTable = () => {
     position: "relative",
     overflow: "hidden",
     textTransform: "uppercase",
-    margin: "0 50%",
   };
 
   return (
     <div>
-      {!notesSaved && (
-        <button
-          style={buttonStyles}
-          type="button"
-          onClick={handleSaveNotes}
-          disabled={notesSaved}
-        >
-          Save Notes
-        </button>
-      )}
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "20px" }}
+      >
+        {!notesSaved && (
+          <button
+            style={buttonStyles}
+            type="button"
+            onClick={handleSaveNotes}
+            disabled={notesSaved}
+          >
+            Save Notes
+          </button>
+        )}
+      </div>
       <div className="container">
         <div className="table-wrapper">
           <table className="table table-striped table-hover">

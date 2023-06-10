@@ -9,7 +9,7 @@ const TableShowing = () => {
       .get("/api/gettable")
       .then((response) => {
         setModules(response.data);
-        console.log(response.data);
+        console.log("hello", response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -49,8 +49,9 @@ const TableShowing = () => {
             {modules.map((module, index) => (
               <tr key={module.id}>
                 <td>{getModuleName(index)}</td>
-                <td>{module.teacherNames[0]}</td>
-                <td>{module.teacherNames[1]}</td>
+                {module.teacherNames.map((teacherName, i) => (
+                  <td key={i}>{teacherName}</td>
+                ))}
               </tr>
             ))}
           </tbody>
