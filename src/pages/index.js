@@ -7,4 +7,4 @@ export { default as AddCode } from "./viceD/AddCode";
 export { default as Assign } from "./cfd/Assign";
 export { default as Dashboardcfd } from "./cfd/Dashboardcfd";
 export { default as ShareResults } from "./cfd/ShareResults";
-
+export { default as Results } from "./student/Results";

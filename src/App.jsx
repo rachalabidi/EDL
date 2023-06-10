@@ -11,7 +11,7 @@ import CfdPrivateRoute from "./CfdPrivateRoute";
 
 import List from "./pages/admin/List";
 import TablePage from "./pages/cfd/TablePage";
-
+import PostContainerView from "./components/POST/PostContainerView";
 import {
   AdminLayout,
   TeacherLayout,
@@ -22,6 +22,7 @@ import {
   Assign,
   Dashboardcfd,
   ShareResults,
+  Results,
 } from "./pages/index";
 import "./assets/style/app.css";
 
@@ -66,8 +67,13 @@ function App() {
           <Route path="/Teacher" Component={TeacherLayout} />
         </Route>
         {/* <Route exact path="/Teacher" Component={TeacherLayout} /> */}
+
         <Route path="/Student" element={<StudentPrivateRoute />}>
-          <Route path="/Student" Component={StudentLayout} />
+          <Route path="/Student" element={<StudentLayout />}>
+            <Route path="/Student/Dashboard" element={<PostContainerView />} />
+
+            <Route path="/Student/Results" element={<Results />} />
+          </Route>
         </Route>
 
         <Route path="/ViceD" element={<ViceDPrivateRoute />}>

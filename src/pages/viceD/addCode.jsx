@@ -67,25 +67,21 @@ const AddCode = () => {
     position: "relative",
     overflow: "hidden",
     textTransform: "uppercase",
-    margin: "0 40%",
   };
 
-  const buttonHoverStyles = {
-    backgroundColor: "#fff",
-    color: "var(--primary-color)",
-    textDecoration: "none",
-  };
   return (
     <div>
-      <button
-        style={buttonStyles}
-        onMouseOver={() => (buttonStyles = buttonHoverStyles)}
-        onMouseOut={() => (buttonStyles = {})}
-        type="button"
-        onClick={generateAnonymityCodes}
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "20px" }}
       >
-        Generate Anonymity Code
-      </button>
+        <button
+          style={buttonStyles}
+          type="button"
+          onClick={generateAnonymityCodes}
+        >
+          Generate Anonymity Code
+        </button>
+      </div>
       <div className="container">
         <div className="table-wrapper">
           <table className="table table-striped table-hover">

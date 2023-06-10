@@ -50,7 +50,7 @@ function LoginForm() {
                 navigateTo("/admin/dashboard");
                 break;
               case "student":
-                navigateTo("/Student");
+                navigateTo("/Student/Dashboard");
                 break;
               case "cfd":
                 navigateTo("/Cfd/Dashboard");
