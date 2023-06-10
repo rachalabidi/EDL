@@ -39,10 +39,16 @@ const TablePage = ({ tableName }) => {
   };
 
   const handleUpdateNoteD = () => {
-    const updatedTableData = tableData.map((row) => ({
-      ...row,
-      noteD: calculateDifference(row.note1, row.note2),
-    }));
+    const updatedTableData = tableData.map((row) => {
+      const noteD = calculateDifference(row.note1, row.note2);
+      const noteFM = noteD < 3 ? (row.note1 + row.note2) / 2 : row.noteFM;
+
+      return {
+        ...row,
+        noteD,
+        noteFM,
+      };
+    });
 
     axios
       .post(`/api/${tableName}_notes/update-all`, {
@@ -96,7 +102,8 @@ const TablePage = ({ tableName }) => {
     // margin: "0 50%",
   };
   const filterTeachers = teacherOptions.filter(
-    (teacher) => teacher[`assigned_${tableName}`] === 0
+    (teacher) =>
+      teacher[`assigned_${tableName}`] === 0 && teacher.assigned === 0
   );
 
   return (
