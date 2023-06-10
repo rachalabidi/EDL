@@ -11,6 +11,7 @@ import CfdPrivateRoute from "./CfdPrivateRoute";
 
 import List from "./pages/admin/List";
 import TablePage from "./pages/cfd/TablePage";
+
 import {
   AdminLayout,
   TeacherLayout,
@@ -20,6 +21,7 @@ import {
   AddCode,
   Assign,
   Dashboardcfd,
+  ShareResults,
 } from "./pages/index";
 import "./assets/style/app.css";
 
@@ -80,7 +82,6 @@ function App() {
           <Route path="/Cfd" element={<CfdLayout />}>
             <Route path="/Cfd/Dashboard" element={<Dashboardcfd />} />
             <Route>
-              {" "}
               <Route
                 path="/Cfd/Dashboard/gl"
                 element={<TablePage tableName="gl" />}
@@ -103,6 +104,7 @@ function App() {
               ></Route>
             </Route>
             <Route path="/Cfd/AssignTeachers" element={<Assign />} />
+            <Route path="/Cfd/shareResults" element={<ShareResults />} />
           </Route>
         </Route>
       </Routes>

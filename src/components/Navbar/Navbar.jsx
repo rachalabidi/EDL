@@ -55,6 +55,9 @@ const Navbar = (props) => {
         <Link to={props.pathTwo} className="nav-Link">
           {props.itemTwo}
         </Link>
+        <Link to={props.path3} className="nav-Link">
+          {props.item3}
+        </Link>
         <button type="button" onClick={logoutSubmit} className="nav-Link b">
           Log out
         </button>
